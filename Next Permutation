@@ -1,0 +1,26 @@
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &nums, int n)
+{
+  int k, l;
+        //searching for nums[k]<nums[k+1]
+        for (k = n - 2; k >= 0; k--) {
+            if (nums[k] < nums[k + 1]) {
+                break;
+            }
+        }
+        if (k < 0) { // it means we right now at last element
+            reverse(nums.begin(), nums.end());
+        }
+        //otherwise find another index  whose value greater than  nums[k]
+        else {
+            for (l = n - 1; l > k; l--) {
+                if (nums[l] > nums[k]) {
+                    break;
+                }
+            } 
+            swap(nums[k], nums[l]);
+            reverse(nums.begin() + k + 1, nums.end());
+          
+        }
+      return nums;
+}
