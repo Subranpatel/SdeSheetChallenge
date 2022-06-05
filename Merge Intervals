@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+vector<vector<int>> mergeIntervals(vector<vector<int>> &v)
+{
+ int n= v.size();
+        if(n==1)
+            return v;
+        sort(v.begin(),v.end());
+        vector<vector<int>> ans;
+        ans.push_back(v[0]);
+        int j=0;
+        for(int i=1;i<n;i++)
+        {
+            if(ans[j][1]>=v[i][0]) 
+            {
+                ans[j][1]=max(ans[j][1],v[i][1]);
+                
+            }
+            else
+            {
+                ans.push_back(v[i]);
+                j++;
+            }
+        }
+        return ans;
+}
